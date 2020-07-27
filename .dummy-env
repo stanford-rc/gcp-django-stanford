@@ -1,0 +1,14 @@
+export DJANGO_SECRET_KEY=123456
+export GOOGLE_APPLICATION_CREDENTIALS=/path/to/credentials.json
+export TWITTER_USERNAME=vsoch
+export INSTAGRAM_USERNAME=
+export FACEBOOK_USERNAME=
+export MYSQL_HOST=
+export MYSQL_USER=
+export MYSQL_PASSWORD=
+export MYSQL_DATABASE=
+export SENDGRID_API_KEY=
+export SENDGRID_SENDER_EMAIL=
+export HELP_CONTACT_EMAIL=
+export TERMS_OF_SERVICE_URL=
+export GITHUB_REPOSITORY=https://github.com/stanford-rc/gcp-django-stanford/issues
