@@ -35,4 +35,4 @@ jobs:
           export PATH="/usr/share/miniconda/bin:$PATH"
           source activate testing
           pip install -r requirements.txt
-          python manage.py tests/*
+          python manage.py test tests.test_project
