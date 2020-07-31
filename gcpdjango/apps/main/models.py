@@ -1,4 +1,3 @@
-
 from gcpdjango.settings import DOMAIN_NAME
 from django.db import models
 from django.urls import reverse

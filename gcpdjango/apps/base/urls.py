@@ -1,4 +1,3 @@
-
 from django.views.generic.base import TemplateView
 from django.conf.urls import url
 import gcpdjango.apps.base.views as views

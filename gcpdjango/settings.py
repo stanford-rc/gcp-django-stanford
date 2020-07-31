@@ -1,4 +1,3 @@
-
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -21,7 +20,9 @@ HELP_CONTACT_EMAIL = os.environ.get("HELP_CONTACT_EMAIL")
 SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
 SENDGRID_SENDER_EMAIL = os.environ.get("SENDGRID_SENDER_EMAIL", HELP_CONTACT_EMAIL)
 
-TERMS_OF_SERVICE_URL = os.environ.get("TERMS_OF_SERVICE_URL", "https://www.stanford.edu/site/terms/")
+TERMS_OF_SERVICE_URL = os.environ.get(
+    "TERMS_OF_SERVICE_URL", "https://www.stanford.edu/site/terms/"
+)
 DOMAIN_NAME = os.environ.get("DOMAIN_NAME", "http://127.0.0.1:8000")
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = DOMAIN_NAME
 

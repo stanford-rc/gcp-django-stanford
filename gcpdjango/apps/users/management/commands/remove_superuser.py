@@ -1,4 +1,3 @@
-
 from gcpdjango.apps.users.models import User
 from django.core.management.base import BaseCommand, CommandError
 

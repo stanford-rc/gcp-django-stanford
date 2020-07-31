@@ -1,4 +1,3 @@
-
 from gcpdjango.apps.main.models import Project, FormTemplate
 from bootstrap_datepicker_plus import DatePickerInput
 from django import forms
@@ -52,19 +51,18 @@ class FormTemplateForm(forms.ModelForm):
             "outcome_maintenance",
             "outcome_other",
             "implementation_recruited",
-            "implementation_participants",      
-            "implementation_enrolled",             
-            "implementation_completing_half",      
-            "implementation_completing_majority",  
-            "results_reach",                       
-            "results_effectiveness",               
-            "results_adoption",                    
-            "results_quality",                   
-            "results_cost",                        
-            "results_maintenance",                  
+            "implementation_participants",
+            "implementation_enrolled",
+            "implementation_completing_half",
+            "implementation_completing_majority",
+            "results_reach",
+            "results_effectiveness",
+            "results_adoption",
+            "results_quality",
+            "results_cost",
+            "results_maintenance",
             "results_other",
         )
-
 
     def __init__(self, *args, **kwargs):
         super(FormTemplateForm, self).__init__(*args, **kwargs)
