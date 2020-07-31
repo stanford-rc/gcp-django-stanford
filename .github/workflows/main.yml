@@ -35,4 +35,5 @@ jobs:
           export PATH="/usr/share/miniconda/bin:$PATH"
           source activate testing
           pip install -r requirements.txt
+          export DJANGO_SECRET_KEY=thiskeyisnotsosecret
           python manage.py test tests.test_project
