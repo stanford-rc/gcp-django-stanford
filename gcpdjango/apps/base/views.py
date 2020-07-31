@@ -1,4 +1,3 @@
-
 from django.db.models import Q
 from django.shortcuts import render
 
@@ -6,7 +5,10 @@ from ratelimit.decorators import ratelimit
 from gcpdjango.apps.main.models import Project
 from itertools import chain
 
-from gcpdjango.settings import VIEW_RATE_LIMIT as rl_rate, VIEW_RATE_LIMIT_BLOCK as rl_block
+from gcpdjango.settings import (
+    VIEW_RATE_LIMIT as rl_rate,
+    VIEW_RATE_LIMIT_BLOCK as rl_block,
+)
 
 
 # Custom 404/500 views
@@ -105,7 +107,5 @@ def projects_query(q):
     """specific search for distributions
     """
     return Project.objects.filter(
-        Q(name__icontains=q)
-        | Q(group__name__icontains=q)
-        | Q(description__icontains=q)
+        Q(name__icontains=q) | Q(group__name__icontains=q) | Q(description__icontains=q)
     ).distinct()

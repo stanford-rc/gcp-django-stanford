@@ -1,4 +1,3 @@
-
 from gcpdjango.apps.users.models import Group, User
 from gcpdjango.apps.users.decorators import user_agree_terms
 from gcpdjango.apps.users.utils import generate_random_password, send_email
@@ -37,9 +36,7 @@ def group_details(request, uuid):
     """
     try:
         group = Group.objects.get(id=uuid)
-        return render(
-            request, "groups/group_details.html", context={"group": group}
-        )
+        return render(request, "groups/group_details.html", context={"group": group})
     except Group.DoesNotExist:
         raise Http404
 
@@ -168,7 +165,8 @@ def invite_users(request):
                     request=request,
                     email_to=email,
                     message=message,
-                    subject="[%s] Your are invited to join the Mental Health Technology Transfer Network" % slug,
+                    subject="[%s] Your are invited to join the Mental Health Technology Transfer Network"
+                    % slug,
                 ):
                     success_count += 1
                 total_count += 1

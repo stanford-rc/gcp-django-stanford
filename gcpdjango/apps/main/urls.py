@@ -1,4 +1,3 @@
-
 from django.urls import path
 from gcpdjango.apps.main import views
 
@@ -16,5 +15,5 @@ urlpatterns = [
     ),
     path(
         "project/forms/<uuid:uuid>/", views.view_project_form, name="view_project_form"
-    )
+    ),
 ]

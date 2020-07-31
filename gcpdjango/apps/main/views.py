@@ -1,4 +1,3 @@
-
 from django.shortcuts import render, redirect
 from django.http import Http404
 from ratelimit.decorators import ratelimit
@@ -9,7 +8,10 @@ from django.forms.models import model_to_dict
 from gcpdjango.apps.users.decorators import user_agree_terms
 
 from gcpdjango.apps.main.models import Project
-from gcpdjango.settings import VIEW_RATE_LIMIT as rl_rate, VIEW_RATE_LIMIT_BLOCK as rl_block
+from gcpdjango.settings import (
+    VIEW_RATE_LIMIT as rl_rate,
+    VIEW_RATE_LIMIT_BLOCK as rl_block,
+)
 from gcpdjango.apps.main.forms import (
     ProjectForm,
     FormTemplateForm,
@@ -118,12 +120,7 @@ def edit_form_template(request, uuid):
         if project.form is not None:
             form = FormTemplateForm(initial=model_to_dict(project.form))
     return render(
-        request,
-        "projects/edit_form_template.html",
-        {
-            "form": form,
-            "project": project
-        },
+        request, "projects/edit_form_template.html", {"form": form, "project": project},
     )
 
 

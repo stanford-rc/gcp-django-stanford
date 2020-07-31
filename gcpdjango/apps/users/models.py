@@ -105,6 +105,7 @@ class Group(models.Model):
     """A group of users with shared affiliation. It can have
        one or more owners to manage it.
     """
+
     name = models.CharField(max_length=50, unique=True, default=None)
     owners = models.ManyToManyField(
         User,

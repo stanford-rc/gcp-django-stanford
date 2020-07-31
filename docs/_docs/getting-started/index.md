@@ -12,7 +12,7 @@ The documentation here will get you started to use the gcp-django-template, deve
 with Python and Django. This is intended for developers. If you want to see
 the user documentation, see [the user guide]({{ site.baseurl }}/user-guide/).
 
-### Setup
+## Setup
 
 You will want to follow the instructions [here](https://cloud.google.com/appengine/docs/standard/python3/building-app/writing-web-service)
 and:
@@ -43,7 +43,7 @@ APIs for the following:
  - Google Storage
 
 
-#### Storage
+### Storage
 
 Since app engine doesn't allow writing to the filesystem, you would need to use Google Cloud Storage
 for file uploads, and use the [django-storages](https://django-storages.readthedocs.io/en/latest/backends/gcloud.html)
@@ -140,8 +140,7 @@ handles spam. You should export your `HELP_CONTACT_EMAIL` in the .env file as fo
 export HELP_CONTACT_EMAIL=myemail@domain.com
 ```
 
-
-### SendGrid Secrets
+### SendGrid
 
 We use SendGrid to invite users to the site. Note that the emails can sometimes
 end up in spam, so you should be prepared to notify invitees of this.
@@ -159,7 +158,7 @@ If this is the same as your `HELP_CONTACT_EMAIL` you can leave it blank, and the
 contact email will be used. **Important** before using the API this email needs to be added as a known [Sender](https://app.sendgrid.com/settings/sender_auth/senders). If it is not, you will get a permission denied error. You
 also likely want to go to Settings -> Tracking and disable link tracking in email.
 
-#### SendGrid
+#### SendGrid Account
 
 To send emails from the server, we use SendGrid. This means
 that you need to [sign up](https://app.sendgrid.com/) for an account (the basic account with 100 emails
@@ -191,96 +190,10 @@ can customize this:
 VIEW_RATE_LIMIT="50/1d"  # The rate limit for each view, django-ratelimit, "50 per day per ipaddress)
 VIEW_RATE_LIMIT_BLOCK=True # Given that someone goes over, are they blocked for the period?
 ```
-
 And see the [django-ratelimit](https://django-ratelimit.readthedocs.io/en/v1.0.0/usage.html) documentation
 for other options. 
 
-### Database
-
-For our database, we use [Stanford managed SQL](https://uit.stanford.edu/service/sql).
-We won't need this for local development, for which we will use sqlite (a local file database).
-If you ever need to delete and refresh this local testing database, you can do:
-
-```bash
-rm db.sqlite3
-```
-
-For deployment, you'll need to first create your database in cloud managed sql,
-and export these environment variables in your local .env file:
-
-```
-export MYSQL_HOST=<the.hostname>
-export MYSQL_USER=<dbusername>
-export MYSQL_PASSWORD=<dbpassword>
-export MYSQL_DATABASE=<databasename>
-```
-
-And then at the onset of development, you'll need to both make and run migrations.
-
-```bash
-make migrate
-make migrations
-```
-
-### Development
-
-To develop locally, you'll want to create a local environment and then install
-dependencies to it.
-
-```bash
-python -m venv env
-source env/bin/activate
-pip install  -r requirements.txt
-```
-
-And always source this environment before you start working.
-Then you will want to source your environment file:
-
-```bash
-source .env
-```
-
-To make migrations we usually might do this:
-
-```bash
-python manage.py makemigrations
-python manage.py makemigrations main
-python manage.py migrate
-```
-
-But to make it easier, there is an included Makefile that can be used to make
-migrations, and then migrate.
-
-```bash
-make migrations
-make migrate
-```
-
-#### Models
-
-The core of any Django application is the definition of [models](https://docs.djangoproject.com/en/3.0/topics/db/models/).
-A model maps directly to a database table, so when you originally design your application, you will
-want to spend some time on this design. The current application creates dummy models for users, an organization,
-and then associated projects. You can also imagine having models for a biological entity, or some kind
-of machine learning model.  Please reach out to [RSE Services]({{ site.repo }}/issues) if you want any help
-designing your models.
-
-
-### Sentry for Monitoring
-
-We can create a few account on [sentry.io](https://sentry.io/) to set up logging
-for our application, and be alerted if there are any errors. The steps there will
-walk you through setup, although you primarily just need to export the id number
-as `SENTRY_ID` in your local .env and app.yaml.
-
-```bash
-export SENTRY_ID=https://xxxxxxxxxxxxxxxxxxxxxxxxxxx.ingest.sentry.io/111111
-```
-
-Don't add this until you are ready to start getting error reports (e.g., when testing locally
-and Debug modeis true you don't need it).
-
-### Development
+## Development
 
 To develop locally, you'll want to create a local environment and then install
 dependencies to it.
@@ -327,6 +240,73 @@ make run
 ```
 
 And then you can open up your browser to [http://localhost:8000](http://localhost:8000).
+
+
+### Database
+
+For our database, we use [Stanford managed SQL](https://uit.stanford.edu/service/sql).
+We won't need this for local development, for which we will use sqlite (a local file database).
+If you ever need to delete and refresh this local testing database, you can do:
+
+```bash
+rm db.sqlite3
+```
+
+For deployment, you'll need to first create your database in cloud managed sql,
+and export these environment variables in your local .env file:
+
+```
+export MYSQL_HOST=<the.hostname>
+export MYSQL_USER=<dbusername>
+export MYSQL_PASSWORD=<dbpassword>
+export MYSQL_DATABASE=<databasename>
+```
+
+And then at the onset of development, you'll need to both make and run migrations.
+
+```bash
+make migrate
+make migrations
+```
+
+
+### Models
+
+The core of any Django application is the definition of [models](https://docs.djangoproject.com/en/3.0/topics/db/models/).
+A model maps directly to a database table, so when you originally design your application, you will
+want to spend some time on this design. The current application creates dummy models for users, an organization,
+and then associated projects. You can also imagine having models for a biological entity, or some kind
+of machine learning model.  Please reach out to [RSE Services]({{ site.repo }}/issues) if you want any help
+designing your models.
+
+
+### Sentry for Monitoring
+
+We can create a few account on [sentry.io](https://sentry.io/) to set up logging
+for our application, and be alerted if there are any errors. The steps there will
+walk you through setup, although you primarily just need to export the id number
+as `SENTRY_ID` in your local .env and app.yaml.
+
+```bash
+export SENTRY_ID=https://xxxxxxxxxxxxxxxxxxxxxxxxxxx.ingest.sentry.io/111111
+```
+
+Don't add this until you are ready to start getting error reports (e.g., when testing locally
+and Debug modeis true you don't need it).
+
+
+
+### Testing
+
+You can write tests for your models, and an example is provided in the repository "tests" folder.
+You can run tests locally after sourcing your environent, and using the `manage.py test` command.
+
+```bash
+source env/bin/activate
+python manage.py test tests.test_project
+```
+
+You can see the [Django docs for testing](https://docs.djangoproject.com/en/3.0/topics/testing/overview/) for more details.
 
 ### Deployment
 

@@ -1,13 +1,14 @@
-
 from django.conf import settings
 
 
 def domain_processor(request):
-    return {"domain": settings.DOMAIN_NAME,
-            "TITLE": settings.TITLE,
-            "AUTHOR": settings.AUTHOR,
-            "KEYWORDS": settings.KEYWORDS,
-            "TERMS_OF_SERVICE_URL": settings.TERMS_OF_SERVICE_URL}
+    return {
+        "domain": settings.DOMAIN_NAME,
+        "TITLE": settings.TITLE,
+        "AUTHOR": settings.AUTHOR,
+        "KEYWORDS": settings.KEYWORDS,
+        "TERMS_OF_SERVICE_URL": settings.TERMS_OF_SERVICE_URL,
+    }
 
 
 def social_processor(request):

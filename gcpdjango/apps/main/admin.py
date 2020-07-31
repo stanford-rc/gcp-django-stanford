@@ -1,4 +1,3 @@
-
 from django.contrib import admin
 from gcpdjango.apps.main.models import Project, FormTemplate
 
